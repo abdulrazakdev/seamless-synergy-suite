@@ -15,38 +15,41 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { LanguageSelector } from "@/components/ui/language-selector";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const features = [
     {
       icon: BookOpen,
-      title: "Learning Management System",
-      description: "Create courses, track progress, and deliver exceptional learning experiences with our comprehensive LMS module.",
+      title: t.modules.lms.title,
+      description: t.modules.lms.description,
       color: "bg-gradient-lms"
     },
     {
       icon: Building2,
-      title: "Enterprise Resource Planning",
-      description: "Manage HR, finance, projects, and operations seamlessly with integrated ERP capabilities.",
+      title: t.modules.erp.title,
+      description: t.modules.erp.description,
       color: "bg-gradient-erp"
     },
     {
       icon: FileText,
-      title: "Content Management System",
-      description: "Create, manage, and publish content across your platform with our intuitive CMS tools.",
+      title: t.modules.cms.title,
+      description: t.modules.cms.description,
       color: "bg-gradient-cms"
     }
   ];
 
   const benefits = [
-    { icon: Shield, text: "Enterprise-grade security" },
-    { icon: Zap, text: "Lightning-fast performance" },
-    { icon: Globe, text: "Multi-language support" },
-    { icon: Users, text: "Unlimited users" },
-    { icon: BarChart3, text: "Real-time analytics" },
-    { icon: CheckCircle, text: "24/7 support" }
+    { icon: Shield, text: t.features.security },
+    { icon: Zap, text: t.features.performance },
+    { icon: Globe, text: t.features.multiLanguage },
+    { icon: Users, text: t.features.unlimitedUsers },
+    { icon: BarChart3, text: t.features.analytics },
+    { icon: CheckCircle, text: t.features.support }
   ];
 
   const testimonials = [
@@ -66,21 +69,26 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      {/* Language Selector - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50">
+        <LanguageSelector variant="outline" className="bg-background/80 backdrop-blur-sm" />
+      </div>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-dark px-4 py-20 md:py-32">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         <div className="relative mx-auto max-w-7xl text-center">
           <Badge className="mb-4" variant="secondary">
-            Integrated Business Suite v2.0
+            {t.landing.version}
           </Badge>
           <h1 className="mb-6 text-4xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl">
-            All-in-One Business
+            {t.landing.heroTitle}
             <span className="block bg-gradient-primary bg-clip-text text-transparent">
-              Management Platform
+              {t.landing.heroSubtitle}
             </span>
           </h1>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-400 md:text-xl">
-            Seamlessly integrate Learning Management, Enterprise Resource Planning, and Content Management in one powerful platform.
+            {t.landing.heroDescription}
           </p>
           <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Button 
@@ -88,7 +96,7 @@ const Index = () => {
               className="gap-2"
               onClick={() => navigate("/login")}
             >
-              Get Started
+              {t.common.getStarted}
               <ArrowRight className="h-4 w-4" />
             </Button>
             <Button 
@@ -97,7 +105,7 @@ const Index = () => {
               className="border-gray-700 bg-white/10 text-white hover:bg-white/20"
               onClick={() => navigate("/login")}
             >
-              View Demo
+              {t.common.viewDemo}
             </Button>
           </div>
         </div>
@@ -108,10 +116,10 @@ const Index = () => {
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              Integrated Modules
+              {t.landing.integratedModules}
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Everything you need to run your business efficiently
+              {t.landing.modulesDescription}
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
@@ -139,7 +147,7 @@ const Index = () => {
       <section className="bg-secondary px-4 py-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-bold tracking-tight md:text-4xl mb-12">
-            Why Choose Our Platform?
+            {t.landing.whyChoose}
           </h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {benefits.map((benefit, index) => (
@@ -158,7 +166,7 @@ const Index = () => {
       <section className="px-4 py-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="text-center text-3xl font-bold tracking-tight md:text-4xl mb-12">
-            Trusted by Industry Leaders
+            {t.landing.trustedBy}
           </h2>
           <div className="grid gap-8 md:grid-cols-2">
             {testimonials.map((testimonial, index) => (
@@ -185,10 +193,10 @@ const Index = () => {
       <section className="bg-gradient-primary px-4 py-20">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-bold text-white md:text-4xl mb-4">
-            Ready to Transform Your Business?
+            {t.landing.readyToTransform}
           </h2>
           <p className="text-lg text-white/90 mb-8">
-            Join thousands of companies already using our integrated platform
+            {t.landing.joinThousands}
           </p>
           <Button 
             size="lg" 
@@ -196,7 +204,7 @@ const Index = () => {
             onClick={() => navigate("/login")}
             className="gap-2"
           >
-            Start Free Trial
+            {t.landing.startFreeTrial}
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
@@ -213,7 +221,7 @@ const Index = () => {
               <span className="font-semibold">Integrated Business Suite</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              © 2025 Enterprise Solutions. All rights reserved.
+              © 2025 Enterprise Solutions. {t.landing.allRightsReserved}
             </p>
           </div>
         </div>
